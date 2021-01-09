@@ -100,6 +100,10 @@ RUN set -eux ;\
         wget \
         git  \
         less \
+        build-essential \
+        cmake \
+        g++ \
+        gcc \
         nano \
         procps  `# ps command` \
         gnupg2  `# TODO: not sure why gnupg2 is needed`  ;\
