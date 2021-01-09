@@ -61,7 +61,7 @@ jobs:
 
           function push_docker {
             for ver in $VERSION; do
-              docker push openmaptiles/$1:$ver
+              docker push akylas/$1:$ver
             done
           }
 
@@ -70,7 +70,7 @@ jobs:
           make build-docker
           if [ ! -z "$VERSION_IMP10" ]; then
             make build-docker VERSION="$VERSION_IMP10" \
-                DOCKER_BUILD_EXTRAS="--build-arg IMPOSM_REPO=https://github.com/omniscale/imposm3.git --build-arg IMPOSM_VERSION=v0.10.0"
+                DOCKER_BUILD_EXTRAS="--build-arg IMPOSM_REPO=https://github.com/mapycz/imposm3.git --build-arg IMPOSM_VERSION=multilinestring"
           fi
 
           # Publish all built image versions, and do it for all other
