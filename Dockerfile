@@ -1,12 +1,6 @@
 FROM golang:1.13 as go-builder
-
-# By default for now use custom build until we verify everything is stable
-ARG IMPOSM_REPO="https://github.com/openmaptiles/imposm3.git"
-ARG IMPOSM_VERSION="v2017-10-18"
-
-# Current version, disable for now
-#ARG IMPOSM_REPO="https://github.com/omniscale/imposm3.git"
-#ARG IMPOSM_VERSION="v0.10.0"
+ARG IMPOSM_REPO="https://github.com/omniscale/imposm3.git"
+ARG IMPOSM_VERSION="v0.11.1"
 
 # Build imposm
 RUN set -eux ;\
@@ -128,7 +122,7 @@ RUN set -eux ;\
     curl -sL https://deb.nodesource.com/setup_12.x | bash -  ;\
     DEBIAN_FRONTEND=noninteractive apt-get update  ;\
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends  \
-        nodejs  ;\
+        nodejs build-essential ;\
     rm -rf /var/lib/apt/lists/  ;\
     npm config set unsafe-perm true  ;\
     npm install -g \
