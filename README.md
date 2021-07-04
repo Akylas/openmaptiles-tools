@@ -4,6 +4,8 @@ The OpenMapTiles toolbox for generating map vector tiles.
 It includes tools to prepare Imposm mappings and SQL files based on layers defined in [OpenMapTiles](https://github.com/openmaptiles/openmaptiles) or similar projects. It also includes map data downloading, parsing, debugging, and performance evaluation tools.
 We encourage other people to use this for their vector tile projects as well since this approach works well for us.
 
+Fork to use custom imposm3 with multilinestring support
+
 ## Docker Images
 ##### openmaptiles-tools [![](https://img.shields.io/microbadger/layers/openmaptiles/openmaptiles-tools)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/microbadger/image-size/openmaptiles/openmaptiles-tools?label=size)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/docker/pulls/openmaptiles/openmaptiles-tools?label=downloads)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/docker/stars/openmaptiles/openmaptiles-tools?label=stars)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools)
 A collection of tools for downloading, parsing, and generating map tiles described below.
