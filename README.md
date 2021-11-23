@@ -7,22 +7,25 @@ We encourage other people to use this for their vector tile projects as well sin
 Fork to use custom imposm3 with multilinestring support
 
 ## Docker Images
-##### openmaptiles-tools [![](https://img.shields.io/microbadger/layers/openmaptiles/openmaptiles-tools)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/microbadger/image-size/openmaptiles/openmaptiles-tools?label=size)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/docker/pulls/openmaptiles/openmaptiles-tools?label=downloads)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/docker/stars/openmaptiles/openmaptiles-tools?label=stars)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools)
+##### openmaptiles-tools [![](https://img.shields.io/docker/pulls/openmaptiles/openmaptiles-tools?label=downloads)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools) [![](https://img.shields.io/docker/stars/openmaptiles/openmaptiles-tools?label=stars)](https://hub.docker.com/r/openmaptiles/openmaptiles-tools)
 A collection of tools for downloading, parsing, and generating map tiles described below.
 
-##### import-data [![](https://img.shields.io/microbadger/layers/openmaptiles/import-data)](https://hub.docker.com/r/openmaptiles/import-data) [![](https://img.shields.io/microbadger/image-size/openmaptiles/import-data?label=size)](https://hub.docker.com/r/openmaptiles/import-data) [![](https://img.shields.io/docker/pulls/openmaptiles/import-data?label=downloads)](https://hub.docker.com/r/openmaptiles/import-data) [![](https://img.shields.io/docker/stars/openmaptiles/import-data?label=stars)](https://hub.docker.com/r/openmaptiles/import-data)
+##### import-data [![](https://img.shields.io/docker/pulls/openmaptiles/import-data?label=downloads)](https://hub.docker.com/r/openmaptiles/import-data) [![](https://img.shields.io/docker/stars/openmaptiles/import-data?label=stars)](https://hub.docker.com/r/openmaptiles/import-data)
 Multiple data sources packaged for import into PostgreSQL DB, includes data from [Natural Earth](http://www.naturalearthdata.com/), [water polygons](http://osmdata.openstreetmap.de), and [lake centerlines](https://github.com/lukasmartinelli/osm-lakelines).
 
-##### postgis [![](https://img.shields.io/microbadger/layers/openmaptiles/postgis)](https://hub.docker.com/r/openmaptiles/postgis) [![](https://img.shields.io/microbadger/image-size/openmaptiles/postgis?label=size)](https://hub.docker.com/r/openmaptiles/postgis) [![](https://img.shields.io/docker/pulls/openmaptiles/postgis?label=downloads)](https://hub.docker.com/r/openmaptiles/postgis) [![](https://img.shields.io/docker/stars/openmaptiles/postgis?label=stars)](https://hub.docker.com/r/openmaptiles/postgis)
+##### postgis [![](https://img.shields.io/docker/pulls/openmaptiles/postgis?label=downloads)](https://hub.docker.com/r/openmaptiles/postgis) [![](https://img.shields.io/docker/stars/openmaptiles/postgis?label=stars)](https://hub.docker.com/r/openmaptiles/postgis)
 An image with PostgreSQL database, Postgis, and several other extensions, custom built for OpenMapTiles project.
 
-##### postgis-preloaded [![](https://img.shields.io/microbadger/layers/openmaptiles/postgis-preloaded)](https://hub.docker.com/r/openmaptiles/postgis-preloaded) [![](https://img.shields.io/microbadger/image-size/openmaptiles/postgis-preloaded?label=size)](https://hub.docker.com/r/openmaptiles/postgis-preloaded) [![](https://img.shields.io/docker/pulls/openmaptiles/postgis-preloaded?label=downloads)](https://hub.docker.com/r/openmaptiles/postgis-preloaded) [![](https://img.shields.io/docker/stars/openmaptiles/postgis-preloaded?label=stars)](https://hub.docker.com/r/openmaptiles/postgis-preloaded)
+##### postgis-preloaded [![](https://img.shields.io/docker/pulls/openmaptiles/postgis-preloaded?label=downloads)](https://hub.docker.com/r/openmaptiles/postgis-preloaded) [![](https://img.shields.io/docker/stars/openmaptiles/postgis-preloaded?label=stars)](https://hub.docker.com/r/openmaptiles/postgis-preloaded)
 The above `postgis` image pre-loaded with the `import-data`. This image is mostly used for testing, and may not be appropriate for production. The image has hardcoded user `openmaptiles` and password `openmaptiles`.
 
 
-##### generate-vectortiles [![](https://img.shields.io/microbadger/layers/openmaptiles/generate-vectortiles)](https://hub.docker.com/r/openmaptiles/generate-vectortiles) [![](https://img.shields.io/microbadger/image-size/openmaptiles/generate-vectortiles?label=size)](https://hub.docker.com/r/openmaptiles/generate-vectortiles) [![](https://img.shields.io/docker/pulls/openmaptiles/generate-vectortiles?label=downloads)](https://hub.docker.com/r/openmaptiles/generate-vectortiles) [![](https://img.shields.io/docker/stars/openmaptiles/generate-vectortiles?label=stars)](https://hub.docker.com/r/openmaptiles/generate-vectortiles)
-Legacy Mapnik-based image that simplifies `tilelive-copy` tile generation.  Eventually will be replaced with PostgreSQL-based [ST_AsMVT](https://postgis.net/docs/ST_AsMVT.html) approach.
+##### generate-vectortiles [![](https://img.shields.io/docker/pulls/openmaptiles/generate-vectortiles?label=downloads)](https://hub.docker.com/r/openmaptiles/generate-vectortiles) [![](https://img.shields.io/docker/stars/openmaptiles/generate-vectortiles?label=stars)](https://hub.docker.com/r/openmaptiles/generate-vectortiles)
+Legacy Mapnik-based image that simplifies `tilelive-copy` tile generation. Mapnik is outdated and is not actively maintained. Instead, use `generate-tiles` script from the openmaptiles-tools docker image.
 
+## Additional Documentation
+
+See [/docs](./docs)
 
 ## Usage
 
@@ -303,7 +306,7 @@ download-osm geofabrik new-zealand --state state.txt
 download-osm list geofabrik
 ```
 
-### Generate SQL code to create MVT tiles directly by PostGIS
+### Generate SQL to create MVT tiles with PostGIS ST_AsMVT function
 
 Uses tileset definition to create a PostgreSQL
  [prepared](https://www.postgresql.org/docs/current/sql-prepare.html) or
@@ -325,7 +328,7 @@ generate-sqltomvt <tileset>
 
 ### Generate Imposm3 Mapping File
 
-Takes a tileset definition an generates an imposm3 mapping file for importing OSM data.
+Generate Imposm3 mapping file to import OSM data using a tileset definition file.
 
 ```
 generate-imposm3 <tileset>
@@ -348,6 +351,17 @@ Takes a tileset definition and generates Markdown documentation.
 ```
 generate-doc <tileset>
 ```
+
+### Generate MBTiles tile snapshot file
+
+`generate-tiles` script generate tiles from PostgreSQL using [tilelive-copy](https://github.com/mapbox/tilelive#bintilelive-copy) with [tilelive-pgquery](https://github.com/nyurik/tilelive-pgquery#tilelive-pgquery).
+If run without `MID_ZOOM` environment variable, this script will generate all tiles from `MIN_ZOOM` to `MAX_ZOOM` (inclusive).
+
+If `MID_ZOOM` env var is set, `generate-tiles` will first generate all tiles from `MIN_ZOOM` to `MID_ZOOM`. Afterwards, `mbtiles-tools impute` finds the most duplicated small tiles at `MID_ZOOM`, and treats them as "empty" -- it copies empty tiles to the next `MID_ZOOM+1` level as is, without regenerating them. The non-empty tiles at `MID_ZOOM+1` are then generated as before using a list of tiles generated by the `impute` command. Once done, the same steps are repeated for `MID_ZOOM+2`, etc., until the `MAX_ZOOM` (inclusive).
+
+Lastly, `generate-tiles` runs `mbtiles-tools meta-generate` to update mbtiles metadata unless `TILESET_FILE` is not set.
+   
+`generate-tiles` script does not take any parameters, but accepts many environment variables -- see [code](bin/generate-tiles).
 
 ### Generate ETL (Extract-Transform-Load) graph
 

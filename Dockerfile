@@ -31,7 +31,7 @@ RUN set -eux ;\
 
 
 # Build osmborder
-FROM python:3.8 as c-builder
+FROM python:3.9 as c-builder
 ARG OSMBORDER_REV=e3ae8f7a2dcdcd6dc80abab4679cb5edb7dc6fa5
 
 RUN set -eux ;\
@@ -60,7 +60,7 @@ RUN set -eux ;\
 
 
 # Primary image
-FROM python:3.8-slim
+FROM python:3.9-slim
 LABEL maintainer="Yuri Astrakhan <YuriAstrakhan@gmail.com>"
 
 ARG PG_MAJOR=12
@@ -128,10 +128,13 @@ RUN set -eux ;\
     npm install -g \
       @mapbox/mbtiles@0.12.1 \
       @mapbox/tilelive@6.1.0 \
-      tilelive-pgquery@0.7.3 ;\
+      tilelive-pgquery@1.2.0 ;\
     \
     /bin/bash -c 'echo ""; echo ""; echo "##### Cleaning up"' >&2 ;\
     rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --gid 1000 openmaptiles \
+  && useradd --uid 1000 --gid openmaptiles --shell /bin/bash --create-home openmaptiles
 
 # Copy requirements.txt first to avoid pip install on every code change
 COPY ./requirements.txt .
